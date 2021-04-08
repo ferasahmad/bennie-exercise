@@ -7,11 +7,11 @@ Installation:
 
 To Run Test Suite:  
 
-`npm test`  
+`yarn test`  
 
 To Start Server:
 
-`npm start`  
+`yarn start`  
 
 To Visit App:
 
