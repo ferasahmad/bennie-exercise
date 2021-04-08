@@ -18,5 +18,7 @@ To Visit App:
 
 `localhost:3000/ideas`  
 
+Screenshots:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
