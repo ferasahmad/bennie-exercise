@@ -4,7 +4,7 @@ Clone down this repository. You will need `node` and `yarn` installed globally o
 
 Installation:
 
-`yarn`  
+`yarn install`  
 
 To Start Server:
 
