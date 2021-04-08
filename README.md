@@ -5,13 +5,13 @@ Installation:
 
 `yarn`  
 
-To Run Test Suite:  
-
-`yarn test`  
-
 To Start Server:
 
 `yarn start`  
+
+To Run Test Suite:  
+
+`yarn test`  
 
 To Visit App:
 
