@@ -1,9 +1,21 @@
-# Getting Started with Create React App
+
+Clone down this repository. You will need `node` and `yarn` installed globally on your machine.  
+
+Installation:
+
+`npm install`  
+
+To Run Test Suite:  
+
+`npm test`  
+
+To Start Server:
+
+`npm start`  
+
+To Visit App:
+
+`localhost:3000/ideas`  
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
