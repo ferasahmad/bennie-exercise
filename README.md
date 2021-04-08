@@ -3,7 +3,7 @@ Clone down this repository. You will need `node` and `yarn` installed globally o
 
 Installation:
 
-`npm install`  
+`yarn`  
 
 To Run Test Suite:  
 
