@@ -1,12 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Divider } from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 
 import { getUser, getUserPosts } from "../api"; 
 import Detail from "../components/Detail";
-
-
+import Post from "../components/Post";
 
 
 function UserDetails() {
@@ -32,7 +31,7 @@ function UserDetails() {
     }
   };
 
-  console.log(posts);
+  console.log(user);
 
   return (
     <Fragment>
@@ -44,19 +43,16 @@ function UserDetails() {
           </header>
           <div className={classes.contentContainer}>
             <div className={classes.userDetails}>
-              <Detail label="Username" detail={user.username} />
-              <Detail label="Email" detail={user.email} />
-              <Detail label="Phone number" detail={user.phone} />
-              <Detail label="Company" detail={user.company.name} />
-              <Detail label="Address" detail={user.address.city} />
+              <Detail width="49%" label="Username" detail={user.username ? user.username : "NONE"} />
+              <Detail width="49%" label="Email" detail={user.email ? user.email : "NONE"} />
+              <Detail width="49%" label="Phone number" detail={user.phone ? user.phone : "NONE"} />
+              <Detail width="49%" label="Company" detail={user.company.name ? user.name : "NONE"} />
+              <Detail width="100%" label="Address" detail={`${user.address.street} ${user.address.suite}, ${user.address.city}`} />
             </div>
             <div className={classes.postsContainer}>
               {
                 posts.map((post) => (
-                  <div key={post.id}>
-                    <h2>{post.title}</h2>
-                    <p>{post.body}</p>
-                  </div>
+                  <Post key={post.id} title={post.title} body={post.body} />
                 ))
               }
             </div>
@@ -83,6 +79,7 @@ const useStyles = makeStyles({
     maxWidth: "900px",
     backgroundColor: "white",
     padding: "25px",
+    margin: "0 25px 0 25px",
     boxSizing: "border-box"
   },
   header: {
@@ -112,9 +109,7 @@ const useStyles = makeStyles({
   postsContainer: {
     display: "flex",
     flexDirection: "column",
-    background: "#f5f7fa",
     width: "100%",
-    borderRadius: "5px",
     marginTop: "25px",
   },
 });

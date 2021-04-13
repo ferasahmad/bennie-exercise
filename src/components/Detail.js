@@ -3,12 +3,12 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 
 
-const Detail = ({label, detail}) => {
+const Detail = ({label, detail, width}) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.detailContainer}>
-      <p className={classes.label}>{label}</p>
+    <div style={{ width: width }} className={classes.detailContainer}>
+      <p>{label}</p>
       <p className={classes.detail}>{detail}</p>
     </div>
   );
@@ -19,16 +19,13 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "48%",
     height: "50px",
     padding: "0 20px 0 20px",
     background: "#f5f7fa",
     boxSizing: "border-box",
     borderRadius: "5px",
-    marginBottom: "10px"
-  },
-  label: {
-
+    marginBottom: "10px",
+    fontSize: "14px",
   },
   detail: {
     fontWeight: 600
