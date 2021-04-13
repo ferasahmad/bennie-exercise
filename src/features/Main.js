@@ -7,7 +7,6 @@ import { sortAlphabetically } from "../utilities/sortAlphabetically";
 import { getUsers, getPosts } from "../api";
 import CreateUserModal from "./CreateUserModal";
 
-// TODO: READ ABOUT SORT FUNCTION AND PROMISE ALL
 
 const Main = () => {
   const classes = useStyles();
@@ -24,7 +23,6 @@ const Main = () => {
     sortAlphabetically(posts, 'title');
 
     for(let i = 0; i < users.length; i++) {
-      console.log(users[i]);
       for(let e = 0; e < posts.length; e++) {
         if(users[i].id === posts[e].userId){
           const existingPosts = newUsers[i]?.posts || []
@@ -70,7 +68,6 @@ const useStyles = makeStyles({
   container: {
     width: "100%",
     height: "100%",
-    background: "#f5f7fa",
   },
   postsContainer: {
     display: "flex",

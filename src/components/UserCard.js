@@ -1,19 +1,24 @@
 import React, { Fragment } from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Divider } from "@material-ui/core";
+import { Avatar, Divider, Button } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 
 const Main = ({user}) => {
+  const history = useHistory();
   const classes = useStyles();
 
+  const onClickUser = () => {
+    history.push('/user-details')
+  };
 
   return (
     <div className={classes.card}>
-      <div  className={classes.avatarAndName}>
+      <Button className={classes.avatarAndName} onClick={onClickUser}>
         <Avatar className={classes.avatar}>{user.name.charAt(0).toUpperCase()}</Avatar>
         <h3 className={classes.name}>{user.name}</h3>
-      </div>
+      </Button>
       <Divider className={classes.divider} />
       {user.posts ? 
         <Fragment>
@@ -62,6 +67,8 @@ const useStyles = makeStyles({
   },
   name: {
     marginLeft: "10px",
+    textAlign: "left",
+    textTransform: "capitalize",
     width: "200px",
     height: "25px",
     overflow: "hidden",
