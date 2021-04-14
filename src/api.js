@@ -15,3 +15,9 @@ export const getUser = (id) => {
 export const getUserPosts = (id) => {
   return axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
 }
+
+export const postUser = (body) => {
+  return axios.post(`https://jsonplaceholder.typicode.com/users`, {
+    body
+  })
+}

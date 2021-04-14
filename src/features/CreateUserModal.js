@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Snackbar } from "@material-ui/core";
 
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
-
+import Alert from "../components/Alert";
 import Input from "../components/Input";
+import { postUser } from "../api";
+
 
 const CreateUserModal = ({ users, setUsers }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [openToast, setOpenToast] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState();
   const [username, setUsername] = useState();
-
   const [emailValid, setEmailValid] = useState(true);
   const [nameValid, setNameValid] = useState(true);
   const [phoneValid, setPhoneValid] = useState(true);
@@ -36,11 +38,11 @@ const CreateUserModal = ({ users, setUsers }) => {
   }, [username]);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpenModal(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenModal(false);
   };
 
   const createUser = () => {
@@ -57,6 +59,7 @@ const CreateUserModal = ({ users, setUsers }) => {
       setPhoneValid(false);
     }
     if(email && name && username && phone) {
+      handlePostUser();
       setUsers([...users, { email, name, username, phone, id: 100}]);
 
       setEmail("");
@@ -64,58 +67,75 @@ const CreateUserModal = ({ users, setUsers }) => {
       setPhone(null);
       setUsername("");
   
-      setOpen(false);
+      setOpenModal(false);
     } 
   };
 
+  const handlePostUser = async () => {
+    try {
+      await postUser({ email, name, username, phone });
+      
+      setOpenToast(true);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <div className={classes.container}>
-      <Button className={classes.addNewUserButton} onClick={handleClickOpen}>
-        ADD NEW USER +
-      </Button>
-      <Dialog open={open} onClose={handleClose} className={classes.dialog}>
-        <DialogTitle className={classes.header}>Create new user</DialogTitle>
-        <DialogContent className={classes.dialogContent}>
-          <Input 
-            error={!emailValid} 
-            label="Email" 
-            type="email" 
-            value={email} 
-            onChange={(value) => 
-            setEmail(value)}  
-          />
-          <Input 
-            error={!nameValid} 
-            label="Full name" 
-            type="text" value={name} 
-            onChange={(value) => 
-            setName(value)} 
-          />
-          <Input 
-            error={!usernameValid} 
-            label="Username" 
-            type="text" 
-            value={username} 
-            onChange={(value) => setUsername(value)} 
-          />
-          <Input 
-            error={!phoneValid} 
-            label="Phone number" 
-            type="number" 
-            value={phone} 
-            onChange={(value) => setPhone(value)} 
-          />
-        </DialogContent>
-        <DialogActions className={classes.footer}>
-          <Button onClick={handleClose} variant="outlined" color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={createUser} variant="outlined" color="primary">
-            Create
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <Fragment>
+      <Snackbar open={openToast} autoHideDuration={5000} onClose={() => setOpenToast(false)}>
+        <Alert onClose={() => setOpenToast(false)} severity="success">
+          User created successfully! 
+        </Alert>
+      </Snackbar>
+      <div className={classes.container}>
+        <Button className={classes.addNewUserButton} onClick={handleClickOpen}>
+          ADD NEW USER +
+        </Button>
+        <Dialog open={openModal} onClose={handleClose} className={classes.dialog}>
+          <DialogTitle className={classes.header}>Create new user</DialogTitle>
+          <DialogContent className={classes.dialogContent}>
+            <Input 
+              error={!emailValid} 
+              label="Email" 
+              type="email" 
+              value={email} 
+              onChange={(value) => 
+              setEmail(value)}  
+            />
+            <Input 
+              error={!nameValid} 
+              label="Full name" 
+              type="text" value={name} 
+              onChange={(value) => 
+              setName(value)} 
+            />
+            <Input 
+              error={!usernameValid} 
+              label="Username" 
+              type="text" 
+              value={username} 
+              onChange={(value) => setUsername(value)} 
+            />
+            <Input 
+              error={!phoneValid} 
+              label="Phone number" 
+              type="number" 
+              value={phone} 
+              onChange={(value) => setPhone(value)} 
+            />
+          </DialogContent>
+          <DialogActions className={classes.footer}>
+            <Button onClick={handleClose} variant="outlined" color="secondary">
+              Cancel
+            </Button>
+            <Button onClick={createUser} variant="outlined" color="primary">
+              Create
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    </Fragment>
   );
 }
 
