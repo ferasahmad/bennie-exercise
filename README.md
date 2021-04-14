@@ -16,6 +16,6 @@ To Run Test Suite:
 
 To Visit App:
 
-`localhost:3000/ideas`
+`localhost:3000`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
