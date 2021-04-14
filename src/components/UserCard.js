@@ -13,7 +13,7 @@ const UserCard = ({ user }) => {
     history.push(`/user-details/${user.id}`)
   };
 
-  const returnPosts = () => {
+  const renderPosts = () => {
     const posts = [];
 
     for(let i = 0; i < 3; i++) {
@@ -38,7 +38,7 @@ const UserCard = ({ user }) => {
       <Divider className={classes.divider} />
       {user.posts.length !== 0 ? 
         <Fragment>
-          {returnPosts()}
+          {renderPosts()}
         </Fragment>  : 
         <div className={classes.noPostsContainer}>
           <p>NO POSTS</p>
