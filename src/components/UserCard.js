@@ -13,6 +13,20 @@ const UserCard = ({ user }) => {
     history.push(`/user-details/${user.id}`)
   };
 
+  const returnPosts = () => {
+    const posts = [];
+
+    for(let i = 0; i < 3; i++) {
+      posts.push(
+        <div className={classes.post}>
+            <p className={classes.postTitle}>{user.posts[i].title}</p>
+        </div>
+      );
+    }
+
+    return posts;
+  };
+
   return (
     <div className={classes.card}>
       <Button className={classes.avatarAndName} onClick={onClickUser}>
@@ -24,15 +38,7 @@ const UserCard = ({ user }) => {
       <Divider className={classes.divider} />
       {user.posts.length !== 0 ? 
         <Fragment>
-          <div className={classes.post}>
-            <p className={classes.postTitle}>{user.posts[0].title}</p>
-          </div>
-          <div className={classes.post}>
-            <p className={classes.postTitle}>{user.posts[1].title}</p>
-          </div>
-          <div className={classes.post}>
-            <p className={classes.postTitle}>{user.posts[2].title}</p>
-          </div>
+          {returnPosts()}
         </Fragment>  : 
         <div className={classes.noPostsContainer}>
           <p>NO POSTS</p>
