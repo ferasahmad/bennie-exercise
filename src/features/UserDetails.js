@@ -8,7 +8,7 @@ import Detail from "../components/Detail";
 import Post from "../components/Post";
 
 
-function UserDetails({match}) {
+const UserDetails = ({ match }) => {
   const classes = useStyles();
   const [user, setUser] = useState();
   const [posts, setPosts] = useState();

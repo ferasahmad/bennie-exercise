@@ -3,7 +3,7 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 
 
-const Body = ({title, body}) => {
+const Post = ({title, body}) => {
   const classes = useStyles();
 
   return (
@@ -26,4 +26,4 @@ const useStyles = makeStyles({
   },
 });
 
-export default Body;
+export default Post;

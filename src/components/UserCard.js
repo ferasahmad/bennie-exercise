@@ -5,7 +5,7 @@ import { Avatar, Divider, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 
-const Main = ({user}) => {
+const UserCard = ({ user }) => {
   const history = useHistory();
   const classes = useStyles();
 
@@ -16,11 +16,13 @@ const Main = ({user}) => {
   return (
     <div className={classes.card}>
       <Button className={classes.avatarAndName} onClick={onClickUser}>
-        <Avatar className={classes.avatar}>{user.name.charAt(0).toUpperCase()}</Avatar>
+        <Avatar className={classes.avatar}>
+          {user?.name?.charAt(0).toUpperCase()}
+        </Avatar>
         <h3 className={classes.name}>{user.name}</h3>
       </Button>
       <Divider className={classes.divider} />
-      {user.posts ? 
+      {user.posts.length !== 0 ? 
         <Fragment>
           <div className={classes.post}>
             <p className={classes.postTitle}>{user.posts[0].title}</p>
@@ -101,4 +103,4 @@ const useStyles = makeStyles({
   }
 });
 
-export default Main;
+export default UserCard;
