@@ -8,20 +8,23 @@ import Detail from "../components/Detail";
 import Post from "../components/Post";
 
 
-function UserDetails() {
+function UserDetails({match}) {
   const classes = useStyles();
   const [user, setUser] = useState();
   const [posts, setPosts] = useState();
-
+  const { id } = match.params;
+  
   useEffect(() => {
     handleGetUserAndPosts();
   },[]);
 
+  console.log(match);
+
   const handleGetUserAndPosts = async () => {
     try {
       const [usersResponse, postsResponse] = await Promise.all([
-        getUser(1), 
-        getUserPosts(1)
+        getUser(id), 
+        getUserPosts(id)
       ])
 
       setUser(usersResponse.data);
@@ -31,12 +34,10 @@ function UserDetails() {
     }
   };
 
-  console.log(user);
-
   return (
     <Fragment>
       {
-        user && posts ? 
+        user && posts && 
         <div className={classes.container}>
           <header className={classes.header}>
             <Avatar className={classes.avatar}>{user.name.charAt(0).toUpperCase()}</Avatar>
@@ -45,7 +46,7 @@ function UserDetails() {
             <div className={classes.userDetails}>
               <Detail width="49%" label="Username" detail={user.username ? user.username : "NONE"} />
               <Detail width="49%" label="Email" detail={user.email ? user.email : "NONE"} />
-              <Detail width="49%" label="Phone number" detail={user.phone ? user.phone : "NONE"} />
+              <Detail width="49%" label="Phone" detail={user.phone ? user.phone : "NONE"} />
               <Detail width="49%" label="Company" detail={user.company.name ? user.name : "NONE"} />
               <Detail width="100%" label="Address" detail={`${user.address.street} ${user.address.suite}, ${user.address.city}`} />
             </div>
@@ -57,9 +58,6 @@ function UserDetails() {
               }
             </div>
           </div>
-        </div> :
-        <div>
-          LOADING
         </div>
       }
     </Fragment>

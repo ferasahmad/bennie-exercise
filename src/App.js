@@ -10,12 +10,8 @@ import Main from "./features/Main";
 const App = () =>
   <Router>
     <Switch>
-      <Route exact path="/">
-        <Main />
-      </Route>
-      <Route path="/user-details">
-        <UserDetails />
-      </Route>
+      <Route exact path="/" component={Main} />
+      <Route path="/user-details/:id" component={UserDetails} />
     </Switch>
   </Router>
 

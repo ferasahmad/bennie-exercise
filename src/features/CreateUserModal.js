@@ -57,8 +57,8 @@ const CreateUserModal = ({ users, setUsers }) => {
       setPhoneValid(false);
     }
     if(email && name && username && phone) {
-      setUsers([...users, { email, name, username, phone }]);
-  
+      setUsers([...users, { email, name, username, phone, id: 100}]);
+
       setEmail("");
       setName("");
       setPhone(null);
@@ -133,7 +133,7 @@ const useStyles = makeStyles({
     backgroundColor: "#276df7",
     color: "white",
     padding: "16px 29px 16px 29px",
-    marginBottom: "10px"
+    marginBottom: "10px",
   },
   footer: {
     margin: "0 24px 24px 24px",
@@ -141,6 +141,7 @@ const useStyles = makeStyles({
   },
   addNewUserButton: {
     backgroundColor: "white",
+    fontSize: "13px",
     padding: "10px",
     "&:hover": {
       backgroundColor: "#e8e8e8"

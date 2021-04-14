@@ -26,9 +26,14 @@ const useStyles = makeStyles({
     borderRadius: "5px",
     marginBottom: "10px",
     fontSize: "14px",
+    '@media(max-width: 650px)': {
+      width: "100% !important",
+    }
   },
   detail: {
-    fontWeight: 600
+    fontWeight: 600,
+    width: "70%",
+    textAlign: "right"
   },
 });
 

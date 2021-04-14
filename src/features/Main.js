@@ -50,7 +50,9 @@ const Main = () => {
   return (
     <div className={classes.container}>
       <header className={classes.header}>
-        <h1 className={classes.headerTitle}>Bennie exercise</h1>
+        <div className={classes.headerTitleContainer}>
+          <h1 className={classes.headerTitle}>Bennie exercise</h1>
+        </div>
         <CreateUserModal users={users} setUsers={setUsers} />
       </header>
       <div className={classes.postsContainer}>
@@ -74,10 +76,10 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     width: "fit-content",
     justifyContent: "center",
-    marginTop: "164px",
-    paddingBottom: "64px",
+    margin: "164px 32px 64px 32px",
   },
   header: {
+    height: "100.88px",
     position: "fixed",
     left: 0,
     right: 0,
@@ -89,9 +91,18 @@ const useStyles = makeStyles({
     alignItems: "center",
     backgroundColor: "rgb(39, 109, 247)",
     padding: "10px 100px 10px 100px",
+    '@media(max-width: 700px)' : {
+      padding: "10px 32px 10px 32px",
+    }
   },
   headerTitle: {
-    color: "white"
+    color: "white",
+    '@media(max-width: 650px)' : {
+      fontSize: "25px",
+    },
+    '@media(max-width: 430px)' : {
+      display: "none"
+    }
   }
 });
 

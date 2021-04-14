@@ -10,7 +10,7 @@ const Main = ({user}) => {
   const classes = useStyles();
 
   const onClickUser = () => {
-    history.push('/user-details')
+    history.push(`/user-details/${user.id}`)
   };
 
   return (
@@ -51,6 +51,10 @@ const useStyles = makeStyles({
     margin: "7px",
     padding: "20px",
     boxSizing: "border-box",
+    '@media(max-width: 692px)' : {
+      width: "100%",
+      margin: "7px 0 7px 0",
+    }
   },
   noPostsContainer: {
     height: "100%",
@@ -64,6 +68,9 @@ const useStyles = makeStyles({
     width: "100%",
     height: "fit-content",
     alignItems: "center",
+    '@media(max-width: 692px)' : {
+      justifyContent: "flex-start",
+    }
   },
   name: {
     marginLeft: "10px",
