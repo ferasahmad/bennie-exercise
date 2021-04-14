@@ -18,8 +18,6 @@ function UserDetails({match}) {
     handleGetUserAndPosts();
   },[]);
 
-  console.log(match);
-
   const handleGetUserAndPosts = async () => {
     try {
       const [usersResponse, postsResponse] = await Promise.all([
