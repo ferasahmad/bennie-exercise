@@ -1,4 +1,4 @@
-## Bennie Frontend Technical Assessment 🚀
+## Bennie Frontend Technical Exercise 🚀
 
 You will need `node v13.7.0`, `yarn`, and `react` installed globally on your machine.
 
